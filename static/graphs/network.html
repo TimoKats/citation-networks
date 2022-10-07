@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "talkSPORT", "label": "talkSPORT", "shape": "dot", "size": 10}, {"id": "Liverpool Echo", "label": "Liverpool Echo", "shape": "dot", "size": 10}, {"id": "TBR - The Boot Room - Football News", "label": "TBR - The Boot Room - Football News", "shape": "dot", "size": 10}, {"id": "The Independent", "label": "The Independent", "shape": "dot", "size": 10}, {"id": "BBC", "label": "BBC", "shape": "dot", "size": 10}, {"id": "Oracle Red Bull Racing", "label": "Oracle Red Bull Racing", "shape": "dot", "size": 10}, {"id": "Formula 1", "label": "Formula 1", "shape": "dot", "size": 10}, {"id": "Evening Standard", "label": "Evening Standard", "shape": "dot", "size": 10}, {"id": "Motorsport.com", "label": "Motorsport.com", "shape": "dot", "size": 10}, {"id": "Express", "label": "Express", "shape": "dot", "size": 10}, {"id": "The Mirror", "label": "The Mirror", "shape": "dot", "size": 10}, {"id": "RaceFans", "label": "RaceFans", "shape": "dot", "size": 10}, {"id": "Crash", "label": "Crash", "shape": "dot", "size": 10}, {"id": "Man Utd", "label": "Man Utd", "shape": "dot", "size": 10}, {"id": "Daily Mail", "label": "Daily Mail", "shape": "dot", "size": 10}, {"id": "The Peoples Person", "label": "The Peoples Person", "shape": "dot", "size": 10}, {"id": "TEAMtalk", "label": "TEAMtalk", "shape": "dot", "size": 10}, {"id": "Sky Sports", "label": "Sky Sports", "shape": "dot", "size": 10}, {"id": "SportBusiness", "label": "SportBusiness", "shape": "dot", "size": 10}, {"id": "Bangkok Post", "label": "Bangkok Post", "shape": "dot", "size": 10}, {"id": "Luton Town Football Club", "label": "Luton Town Football Club", "shape": "dot", "size": 10}, {"id": "Express \u0026 Star", "label": "Express \u0026 Star", "shape": "dot", "size": 10}, {"id": "Bundesliga", "label": "Bundesliga", "shape": "dot", "size": 10}, {"id": "This Is Anfield", "label": "This Is Anfield", "shape": "dot", "size": 10}, {"id": "Bavarian Football Works", "label": "Bavarian Football Works", "shape": "dot", "size": 10}, {"id": "GIVEMESPORT", "label": "GIVEMESPORT", "shape": "dot", "size": 10}, {"id": "Manchester Evening News", "label": "Manchester Evening News", "shape": "dot", "size": 10}, {"id": "United In Focus - Manchester United FC News", "label": "United In Focus - Manchester United FC News", "shape": "dot", "size": 10}, {"id": "SPORTbible", "label": "SPORTbible", "shape": "dot", "size": 10}, {"id": "ESPN UK", "label": "ESPN UK", "shape": "dot", "size": 10}, {"id": "The Telegraph", "label": "The Telegraph", "shape": "dot", "size": 10}, {"id": "The Guardian", "label": "The Guardian", "shape": "dot", "size": 10}, {"id": "Football.London", "label": "Football.London", "shape": "dot", "size": 10}, {"id": "BT Sport", "label": "BT Sport", "shape": "dot", "size": 10}, {"id": "Just Arsenal", "label": "Just Arsenal", "shape": "dot", "size": 10}, {"id": "Arseblog News", "label": "Arseblog News", "shape": "dot", "size": 10}, {"id": "Sky Sports Boxing", "label": "Sky Sports Boxing", "shape": "dot", "size": 10}, {"id": "BoxingScene.com", "label": "BoxingScene.com", "shape": "dot", "size": 10}, {"id": "Chelsea FC", "label": "Chelsea FC", "shape": "dot", "size": 10}, {"id": "Chelsea Football Club", "label": "Chelsea Football Club", "shape": "dot", "size": 10}, {"id": "West Ham United F.C.", "label": "West Ham United F.C.", "shape": "dot", "size": 10}, {"id": "Hammers News - West Ham United FC", "label": "Hammers News - West Ham United FC", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": "talkSPORT", "to": "Liverpool Echo", "weight": 1}, {"arrows": "to", "from": "talkSPORT", "to": "TBR - The Boot Room - Football News", "weight": 1}, {"arrows": "to", "from": "The Independent", "to": "BBC", "weight": 1}, {"arrows": "to", "from": "The Independent", "to": "Oracle Red Bull Racing", "weight": 1}, {"arrows": "to", "from": "The Independent", "to": "Formula 1", "weight": 1}, {"arrows": "to", "from": "The Independent", "to": "Evening Standard", "weight": 1}, {"arrows": "to", "from": "Motorsport.com", "to": "Express", "weight": 1}, {"arrows": "to", "from": "Motorsport.com", "to": "The Mirror", "weight": 1}, {"arrows": "to", "from": "Motorsport.com", "to": "RaceFans", "weight": 1}, {"arrows": "to", "from": "Motorsport.com", "to": "Crash", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "Man Utd", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "Daily Mail", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "The Peoples Person", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "TEAMtalk", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "Sky Sports", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "SportBusiness", "weight": 1}, {"arrows": "to", "from": "The Mirror", "to": "Bangkok Post", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "Luton Town Football Club", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "The Mirror", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "The Peoples Person", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "Express \u0026 Star", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "Bundesliga", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "This Is Anfield", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "Bavarian Football Works", "weight": 1}, {"arrows": "to", "from": "Daily Mail", "to": "GIVEMESPORT", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "Man Utd", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "United In Focus - Manchester United FC News", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "Express", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "SPORTbible", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "ESPN UK", "weight": 1}, {"arrows": "to", "from": "Manchester Evening News", "to": "The Mirror", "weight": 1}, {"arrows": "to", "from": "The Telegraph", "to": "The Guardian", "weight": 1}, {"arrows": "to", "from": "The Telegraph", "to": "The Mirror", "weight": 1}, {"arrows": "to", "from": "The Telegraph", "to": "Football.London", "weight": 1}, {"arrows": "to", "from": "The Telegraph", "to": "Daily Mail", "weight": 1}, {"arrows": "to", "from": "Football.London", "to": "BT Sport", "weight": 1}, {"arrows": "to", "from": "Football.London", "to": "Just Arsenal", "weight": 1}, {"arrows": "to", "from": "Football.London", "to": "Sky Sports", "weight": 1}, {"arrows": "to", "from": "Football.London", "to": "Arseblog News", "weight": 1}, {"arrows": "to", "from": "Sky Sports", "to": "Sky Sports Boxing", "weight": 1}, {"arrows": "to", "from": "Sky Sports", "to": "BoxingScene.com", "weight": 1}, {"arrows": "to", "from": "Chelsea FC", "to": "talkSPORT", "weight": 1}, {"arrows": "to", "from": "Chelsea FC", "to": "Chelsea Football Club", "weight": 1}, {"arrows": "to", "from": "West Ham United F.C.", "to": "BT Sport", "weight": 1}, {"arrows": "to", "from": "West Ham United F.C.", "to": "talkSPORT", "weight": 1}, {"arrows": "to", "from": "West Ham United F.C.", "to": "Football.London", "weight": 1}, {"arrows": "to", "from": "West Ham United F.C.", "to": "Hammers News - West Ham United FC", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

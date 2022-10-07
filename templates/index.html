@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The supply chain of journalism</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body>
+    <center><h1>&#128270; The Supply Chain of Journalism</h1></center>
+    <div id="content">
+    <form method="POST">
+        <select name="country" id="country">
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+          </select>
+        <select name="topic" id="topic">
+            <option value="top">Top stories</option>
+            <option value="business">Business</option>
+            <option value="technology">Technology</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="science">Science</option>
+            <option value="sports">Sports</option>
+          </select>
+        <input id="amount" name="amount" type="number" value="20" min="1" max="50">
+        <input type="submit" value="make network">
+    </form>
+    <hr>
+    <iframe src="/static/graphs/network.html" scrolling="no" width="100%" height="400px" frameBorder="0"></iframe>
+    <hr>
+    Made by <a href="https://timokats.github.io/">Timo Kats</a>
+    <div style="float:right">
+    Now showing {{amount}} articles from the topic '{{category}}' from {{country}} newspapers.
+    </div>
+    </div>
+
+</body>
+
+</html>
