@@ -8,3 +8,6 @@ The app runs in Flask from your terminal. So, if you have Python 3 installed sim
 
 ### How it works
 For those that want to use this project, this loom video provides a walkthrough of how it works: https://www.loom.com/share/6552b160cccd4d5f9af8c4b3b094729f
+
+### Contact
+I'm always open to converse/collaborate with other developers. If you want to contact me, feel free to send me an [email](mailto:tpakats@gmail.com).
